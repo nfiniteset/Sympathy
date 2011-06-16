@@ -1,2 +1,4 @@
-= Sympathy
-== Easily bind internal varables to form fields
+Sympathy
+= 
+Easily bind internal varables to form fields
+-
