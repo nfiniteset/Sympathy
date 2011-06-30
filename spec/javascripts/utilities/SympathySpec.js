@@ -30,24 +30,46 @@ describe('Sympathy', function(){
       expect(this.emitter()).toEqual(15);
     });
     
-  });
-  
-  describe('link', function(){
-    it('links an emitter and an input element', function(){
-      Sympathy.link(this.emitter, this.rangeElement);
+    it("doesn't trigger an event if set to existing value", function(){
+      this.emitter(15);
+      var callback = jasmine.createSpy();
+      
+      this.emitter.bind('change', callback);
+      expect(callback).not.toHaveBeenCalled();
+      
+      this.emitter(15);
+      expect(callback).not.toHaveBeenCalled();
+      expect(this.emitter()).toEqual(15);
     });
     
+    it("doesn't trigger an event if updated with silent", function(){
+      var callback = jasmine.createSpy("callback");
+      
+      this.emitter.bind('change', callback);
+      expect(callback).not.toHaveBeenCalled();
+      
+      this.emitter(15, {silent: true});
+      expect(callback).not.toHaveBeenCalled();
+      expect(this.emitter()).toEqual(15);
+    });
+    
+  });
+  
+  describe('#link', function(){
+    it('links an emitter and an input element', function(){
+      this.emitter.link(this.rangeElement);
+    }); 
+    
     it('sets range when emitter changes', function(){
-      Sympathy.link(this.emitter, this.rangeElement);
+      this.emitter.link(this.rangeElement);
       
       this.emitter(75);
       expect(this.rangeElement.value).toEqual('75');
     });
     
     it('sets emitter when range changes', function(){
-      Sympathy.link(this.emitter, this.rangeElement);
+      this.emitter.link(this.rangeElement);
       
-      console.log(this.rangeElement);
       this.rangeElement.value = 25;
       $(this.rangeElement).change();
       expect(this.emitter()).toEqual(25);
