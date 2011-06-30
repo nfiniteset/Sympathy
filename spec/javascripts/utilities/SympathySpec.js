@@ -61,19 +61,35 @@ describe('Sympathy', function(){
   });
   
   describe('#link', function(){
-    it('links an emitter and an input element', function(){
-      this.emitter.link(this.rangeElement);
-    }); 
+    describe('input element', function(){
     
-    it('sets range when emitter changes', function(){
-      this.emitter.link(this.rangeElement);
+      it('sets element when emitter changes', function(){
+        this.emitter.link(this.rangeElement);
+        
+        this.emitter(75);
+        expect(this.rangeElement.value).toEqual('75');
+      });
       
-      this.emitter(75);
-      expect(this.rangeElement.value).toEqual('75');
+      it('sets emitter when element changes', function(){
+        this.emitter.link(this.rangeElement);
+        
+        this.rangeElement.value = 25;
+        this.rangeElement.onchange({target: this.rangeElement});
+        expect(this.emitter()).toEqual(25);
+      });
+    
     });
     
-    it('sets emitter when range changes', function(){
-      this.emitter.link(this.rangeElement);
+    describe('any other element', function(){
+      it('sets element when emitter changes', function(){
+        this.emitter.link(this.spanElement);
+        
+        this.emitter(75);
+        expect(this.spanElement.innerHTML).toEqual('75');
+      });
+      
+    });    
+    
     describe("data types", function(){
       it('can use a floating point number', function(){
         var emitter = new Sympathy.Emitter(10.01);
@@ -99,10 +115,10 @@ describe('Sympathy', function(){
         expect(emitter()).toEqual("second");
       });
       
-      this.rangeElement.value = 25;
-      $(this.rangeElement).change();
-      expect(this.emitter()).toEqual(25);
     });
+    
   })
+  
+
   
 });

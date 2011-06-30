@@ -19,12 +19,7 @@ Sympathy.Emitter = function(initialValue){
   _.extend(emitter, Backbone.Events);
   
   emitter.link = function(element){
-    emitter.bind('change', function(){
-      element.value = emitter();
-    });
-    $(element).change(function(){
-      emitter( parseFloat(element.value) );
-    });
+  
     var formatInternal = (function(){
       if(typeof value == 'number'){
         return function(val){ return parseFloat(val); }      
@@ -32,6 +27,21 @@ Sympathy.Emitter = function(initialValue){
         return function(val){return val;};
       }
     })();
+  
+    if(element.tagName == 'INPUT'){
+      emitter.bind('change', function(){
+        element.value = emitter();
+      });
+      element.onchange = function(){
+        emitter( formatInternal(element.value) );
+      };    
+    } else {
+      emitter.bind('change', function(){
+        element.innerHTML = emitter().toString();
+        console.log(element.innerHTML);
+      });
+    }
+
   }
   
   return emitter;
