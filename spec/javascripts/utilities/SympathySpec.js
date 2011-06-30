@@ -5,8 +5,13 @@ describe('Sympathy', function(){
   
   beforeEach(function(){
     this.emitter = new Sympathy.Emitter(10);
-    this.rangeElement = $('<input type="range" />')[0];
-    $('jasmine_content').append(this.rangeElement);
+
+    this.rangeElement = document.createElement('input');
+    this.rangeElement.setAttribute('type', 'range');
+
+    this.inputElement = document.createElement('input');
+    
+    this.spanElement = document.createElement('span');
   });
   
   describe('Emitter', function(){
