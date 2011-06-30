@@ -2,11 +2,15 @@ Sympathy = {};
 Sympathy.Emitter = function(initialValue){
   var value = initialValue;
 
-  var emitter = function e(newValue){
+  var emitter = function (newValue, opts){
+    if (typeof opts == 'undefined') opts = {};
   
-    if(typeof newValue !== 'undefined'){
+    if((typeof newValue !== 'undefined') && (newValue !== value)){
       value = newValue;
-      e.trigger('change', e);
+      
+      if(!opts.silent){
+        emitter.trigger('change', emitter);
+      }
     }
     
     return value;
@@ -14,14 +18,14 @@ Sympathy.Emitter = function(initialValue){
   
   _.extend(emitter, Backbone.Events);
   
+  emitter.link = function(element){
+    emitter.bind('change', function(){
+      element.value = emitter();
+    });
+    $(element).change(function(){
+      emitter( parseFloat(element.value) );
+    });
+  }
+  
   return emitter;
 };
-
-Sympathy.link = function(internal, element){
-  internal.bind('change', function(){
-    element.value = internal();
-  });
-  $(element).change(function(){
-    internal( parseFloat(element.value) );
-  });
-}
