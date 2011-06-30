@@ -25,6 +25,13 @@ Sympathy.Emitter = function(initialValue){
     $(element).change(function(){
       emitter( parseFloat(element.value) );
     });
+    var formatInternal = (function(){
+      if(typeof value == 'number'){
+        return function(val){ return parseFloat(val); }      
+      } else {
+        return function(val){return val;};
+      }
+    })();
   }
   
   return emitter;

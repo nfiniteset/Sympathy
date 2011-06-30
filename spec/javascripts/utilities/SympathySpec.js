@@ -69,6 +69,30 @@ describe('Sympathy', function(){
     
     it('sets emitter when range changes', function(){
       this.emitter.link(this.rangeElement);
+    describe("data types", function(){
+      it('can use a floating point number', function(){
+        var emitter = new Sympathy.Emitter(10.01);
+        emitter.link(this.inputElement);
+        this.inputElement.value = 12.21;
+        this.inputElement.onchange({target: this.inputElement});
+        expect(emitter()).toEqual(12.21);
+      });
+      
+      it('can use an integer', function(){
+        var emitter = new Sympathy.Emitter(123);
+        emitter.link(this.inputElement);
+        this.inputElement.value = 345;
+        this.inputElement.onchange({target: this.inputElement});
+        expect(emitter()).toEqual(345);
+      });
+      
+      it('can use a string', function(){
+        var emitter = new Sympathy.Emitter("first");
+        emitter.link(this.inputElement);
+        this.inputElement.value = "second";
+        this.inputElement.onchange({target: this.inputElement});
+        expect(emitter()).toEqual("second");
+      });
       
       this.rangeElement.value = 25;
       $(this.rangeElement).change();
