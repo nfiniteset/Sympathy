@@ -1,4 +1,4 @@
 Sympathy
 = 
-Easily bind internal varables to form fields
+Easily bind internal values to page elements
 -
