@@ -1,5 +1,5 @@
 Sympathy = {};
-Sympathy.Emitter = function(initialValue){
+Bindable = function(initialValue){
   var value = initialValue;
 
   var emitter = function (newValue, opts){
@@ -18,7 +18,7 @@ Sympathy.Emitter = function(initialValue){
   
   _.extend(emitter, Backbone.Events);
   
-  emitter.link = function(element){
+  emitter.bindElement = function(element){
   
     var formatInternal = (function(){
       if(typeof value == 'number'){

@@ -1,9 +1,9 @@
 
 $(document).ready(function(){
-  var x = new Sympathy.Emitter(75);
+  var x = new Bindable(75);
   
-  x.link(document.getElementById('xSpan'));
-  x.link(document.getElementById('xRange'));
-  x.link(document.getElementById('xField'));
+  x.bindElement(document.getElementById('xSpan'));
+  x.bindElement(document.getElementById('xRange'));
+  x.bindElement(document.getElementById('xField'));
   
 });

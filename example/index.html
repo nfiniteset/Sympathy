@@ -9,14 +9,14 @@
 <body>
   <header>
   	<h1>Sympathy</h1>
-  	<p>Effortlessly synchronize internal variables and page elements.</p>
+  	<p>Effortlessly synchronize internal variables with page elements.</p>
 	</header>
 	
 	<form><fieldset>
     
-    <h2>Create a bondable variable</h2>
+    <h2>Create a bindable variable</h2>
     <div>
-    	<pre>var x = new Sympathy.Emitter(50);</pre>
+    	<pre>var x = new Bindable(50);</pre>
   	</div>
   	
     <h2>Get the value of a variable</h2>
@@ -33,19 +33,19 @@
     	<code>=> 75</code>
     </div>
     
-    <h2>Synchronize a variable to a page element</h2>
+    <h2>Bind an element to a variable</h2>
   	<div>
-      <pre>x.link(document.getElementById('xSpan'));</pre>
+      <pre>x.bindElement(document.getElementById('xSpan'));</pre>
       <p>x = <span id="xSpan">75</span></p>
     </div>
       
     <div>
-      <pre>x.link(document.getElementById('xRange'));</pre>
+      <pre>x.bindElement(document.getElementById('xRange'));</pre>
       <input id="xRange" type="range" value="75" />
     </div>
       
     <div>
-      <pre>x.link(document.getElementById('xField'));</pre>
+      <pre>x.bindElement(document.getElementById('xField'));</pre>
       <input id="xField" type="text" value ="75"/>
     </div>
 	</fieldset></form>
