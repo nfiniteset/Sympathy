@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Sympathy</title>
+	<link href="stylesheets/style.css" media="screen" rel="stylesheet" type="text/css" />
+	
+</head>
+<body>
+  <header>
+  	<h1>Sympathy</h1>
+  	<p>Effortlessly synchronize internal variables and page elements.</p>
+	</header>
+	
+	<form><fieldset>
+    
+    <h2>Create a bondable variable</h2>
+    <div>
+    	<pre>var x = new Sympathy.Emitter(50);</pre>
+  	</div>
+  	
+    <h2>Get the value of a variable</h2>
+    <div>
+    	<pre>x();</pre>
+    	<code>=> 50</code>
+    </div>
+    
+    <h2>Set the value of a variable</h2>
+    <div>
+    	<pre>x(75);</pre>
+    	<pre>x();</pre>
+    	<code>=> 75</code>
+    	<code>=> 75</code>
+    </div>
+    
+    <h2>Synchronize a variable to a page element</h2>
+  	<div>
+      <pre>x.link(document.getElementById('xSpan'));</pre>
+      <p>x = <span id="xSpan">75</span></p>
+    </div>
+      
+    <div>
+      <pre>x.link(document.getElementById('xRange'));</pre>
+      <input id="xRange" type="range" value="75" />
+    </div>
+      
+    <div>
+      <pre>x.link(document.getElementById('xField'));</pre>
+      <input id="xField" type="text" value ="75"/>
+    </div>
+	</fieldset></form>
+
+<script type="text/javascript" src="javascripts/vendor/underscore.js"></script>
+<script type="text/javascript" src="javascripts/vendor/backbone.js"></script>
+<script type="text/javascript" src="javascripts/vendor/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="javascripts/utilities/Sympathy.js"></script>
+<script type="text/javascript" src="javascripts/application.js"></script>
+</body>
+</html>
