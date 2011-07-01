@@ -18,7 +18,7 @@ Bindable = function(initialValue){
   
   _.extend(emitter, Backbone.Events);
   
-  emitter.link = function(element){
+  emitter.bindElement = function(element){
   
     var formatInternal = (function(){
       if(typeof value == 'number'){

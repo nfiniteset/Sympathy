@@ -60,18 +60,18 @@ describe('Sympathy', function(){
     
   });
   
-  describe('#link', function(){
+  describe('#linkElement', function(){
     describe('input element', function(){
     
       it('sets element when emitter changes', function(){
-        this.emitter.link(this.rangeElement);
+        this.emitter.bindElement(this.rangeElement);
         
         this.emitter(75);
         expect(this.rangeElement.value).toEqual('75');
       });
       
       it('sets emitter when element changes', function(){
-        this.emitter.link(this.rangeElement);
+        this.emitter.bindElement(this.rangeElement);
         
         this.rangeElement.value = 25;
         this.rangeElement.onchange({target: this.rangeElement});
@@ -82,7 +82,7 @@ describe('Sympathy', function(){
     
     describe('any other element', function(){
       it('sets element when emitter changes', function(){
-        this.emitter.link(this.spanElement);
+        this.emitter.bindElement(this.spanElement);
         
         this.emitter(75);
         expect(this.spanElement.innerHTML).toEqual('75');
@@ -92,24 +92,24 @@ describe('Sympathy', function(){
     
     describe("data types", function(){
       it('can use a floating point number', function(){
-        var emitter = new Sympathy.Emitter(10.01);
-        emitter.link(this.inputElement);
+        var emitter = new Bindable(10.01);
+        emitter.bindElement(this.inputElement);
         this.inputElement.value = 12.21;
         this.inputElement.onchange({target: this.inputElement});
         expect(emitter()).toEqual(12.21);
       });
       
       it('can use an integer', function(){
-        var emitter = new Sympathy.Emitter(123);
-        emitter.link(this.inputElement);
+        var emitter = new Bindable(123);
+        emitter.bindElement(this.inputElement);
         this.inputElement.value = 345;
         this.inputElement.onchange({target: this.inputElement});
         expect(emitter()).toEqual(345);
       });
       
       it('can use a string', function(){
-        var emitter = new Sympathy.Emitter("first");
-        emitter.link(this.inputElement);
+        var emitter = new Bindable("first");
+        emitter.bindElement(this.inputElement);
         this.inputElement.value = "second";
         this.inputElement.onchange({target: this.inputElement});
         expect(emitter()).toEqual("second");
