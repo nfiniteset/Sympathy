@@ -38,7 +38,6 @@ Sympathy.Emitter = function(initialValue){
     } else {
       emitter.bind('change', function(){
         element.innerHTML = emitter().toString();
-        console.log(element.innerHTML);
       });
     }
 
