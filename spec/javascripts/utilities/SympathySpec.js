@@ -4,7 +4,7 @@ describe('Sympathy', function(){
   this.rangeElement;
   
   beforeEach(function(){
-    this.emitter = new Sympathy.Emitter(10);
+    this.emitter = new Bindable(10);
 
     this.rangeElement = document.createElement('input');
     this.rangeElement.setAttribute('type', 'range');
@@ -14,7 +14,7 @@ describe('Sympathy', function(){
     this.spanElement = document.createElement('span');
   });
   
-  describe('Emitter', function(){
+  describe('Bindable', function(){
     it('can be initialized with a value', function(){
       expect(this.emitter()).toEqual(10);
     });

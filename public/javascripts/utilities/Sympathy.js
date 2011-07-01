@@ -1,5 +1,5 @@
 Sympathy = {};
-Sympathy.Emitter = function(initialValue){
+Bindable = function(initialValue){
   var value = initialValue;
 
   var emitter = function (newValue, opts){
